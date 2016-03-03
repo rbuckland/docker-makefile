@@ -32,5 +32,5 @@ all	: build
 build	: $(docker_images)
 
 clean:
-	find . -name $(DOCKER_IDENTITY_FILE) | xargs cat | sed 's/sha256://g' | xargs docker rmi --force ; \
+	find . -name $(DOCKER_IDENTITY_FILE) | xargs -L1 -ixx sh -c '(docker rmi --force `sed "s/sha256://g" xx` )' ; \
 	find . -type f -name $(DOCKER_IDENTITY_FILE) -exec rm {} \;
