@@ -28,6 +28,15 @@ It will involve writing a .depends `Makefile` for `sinclude`
 
 ### Some Conventions
 
+We need to encode this
+```
+username/image-name:version
+```
+
+#### Image Name
+
+The name of the image _will_ be the directory name
+
 #### Image Version
 
 We need a way to "encode" a version of the _to be built_ docker image.
@@ -37,6 +46,8 @@ So we use a LABEL inside the Dockerfile
 LABEL build.publish.version="0.2"
 ```
 
+This is optional. if the version is not found, `:latest` is used
+
 #### Image "User" Prefix
 
 We need a way to "encode" the "user" of the _to be built_ docker image.
@@ -45,6 +56,8 @@ So we use a LABEL inside the Dockerfile
 ```
 LABEL build.publish.username="otheruser"
 ```
+
+This is optional. if the username is not found no username prefix is specified. 
 
 ### Example
 ```
